@@ -2,10 +2,11 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
+import { ActivityPage } from './activity.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { ActivityPageRoutingModule } from './activity-routing.module';
 
 @NgModule({
   imports: [
@@ -13,8 +14,9 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    ActivityPageRoutingModule,
+    ScrollingModule
   ],
-  declarations: [Tab1Page]
+  declarations: [ActivityPage]
 })
-export class Tab1PageModule {}
+export class ActivityPageModule {}
