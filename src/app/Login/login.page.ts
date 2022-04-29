@@ -5,7 +5,7 @@ import { Router} from '@angular/router';
 import { AlertController, LoadingController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
+  selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss']
 })
@@ -44,10 +44,19 @@ export class LoginPage implements OnInit{
 
     if(user)
     {
-      this.router.navigateByUrl('/tabs', {replaceUrl: true});
+      this.router.navigateByUrl('/activity', {replaceUrl: true});
     } else {
-      //this.showAlert('Registrierung fehlgeschlagen', 'Bitte erneut versuchen');
+      this.showAlert('Registrierung fehlgeschlagen', 'Bitte erneut versuchen');
     }
+  }
+  async showAlert(header, message) {
+    const alert = await this.alertController.create(
+      {
+        header,
+        message,
+        buttons: ['OK'],
+      });
+      await alert.present();
   }
 
   async login() {
@@ -61,7 +70,7 @@ export class LoginPage implements OnInit{
     {
       this.router.navigateByUrl('/tabs', {replaceUrl: true});
     } else {
-      //this.showAlert('Login fehlgeschlagen', 'Bitte erneut versuchen');
+      this.showAlert('Login fehlgeschlagen', 'Bitte erneut versuchen');
     }
   }
 }

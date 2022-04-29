@@ -1,3 +1,4 @@
+import { ActivityPage } from './Activity/activity.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import{
@@ -7,12 +8,17 @@ import{
 } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['tabs']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['Activity']);
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./Login/login.module').then(m => m.LoginPageModule),
+    ...canActivate(redirectLoggedInToHome)
+  },
+  {
+    path: 'Activity',
+    loadChildren: () => import('./Activity/activity.module').then(m => m.ActivityPageModule),
     ...canActivate(redirectLoggedInToHome)
   },
   {
@@ -28,7 +34,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules } )
   ],
   exports: [RouterModule]
 })
