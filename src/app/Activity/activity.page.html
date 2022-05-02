@@ -1,32 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Activity
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Activity</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <cdk-virtual-scroll-viewport itemSize="56" minBufferPx="900" maxBufferPx="1350">
+<ion-content>
+  <h1>EVENTI<span class="title-color">VITY</span></h1>
+  <h3>My activites</h3>
+  <cdk-virtual-scroll-viewport itemSize="56">
     <ion-list>
-      <ion-item *cdkVirtualFor="let item of items">
-        <ion-avatar slot="start">
-          <img src="https://loremflickr.com/40/40" />
-        </ion-avatar>
-        <ion-label> {{ item }} </ion-label>
+      <ion-item *cdkVirtualFor="let activity of testActivities" class="item-style">
+        <ion-label> {{ activity.title }} </ion-label>
+        <ion-label> {{ activity.adress }} </ion-label>
+        <ion-label> {{ activity.date }} </ion-label>
       </ion-item>
     </ion-list>
   </cdk-virtual-scroll-viewport>
-
-  <div>
-    Scheiss HTML
-  </div>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <h3>All activites</h3>
+  <cdk-virtual-scroll-viewport itemSize="56">
+    <ion-list>
+      <ion-item *cdkVirtualFor="let activity of testActivities" class="item-style">
+        <ion-label> {{ activity.title }} </ion-label>
+        <ion-label> {{ activity.adress }} </ion-label>
+        <ion-label> {{ activity.date }} </ion-label>
+      </ion-item>
+    </ion-list>
+  </cdk-virtual-scroll-viewport>
+  
 </ion-content>
