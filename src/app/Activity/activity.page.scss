@@ -1,4 +1,29 @@
 cdk-virtual-scroll-viewport {
-    height: 100%;
-    width: 100%;
-  }
+  height: 280px;
+  width: 100%;
+  padding: 10px;
+}
+
+::ng-deep .cdk-virtual-scroll-content-wrapper {
+width: 100%
+}
+
+h3 {
+padding-top: 10px;
+padding-left: 15px;
+font-weight: bold;
+}
+
+.item-style {
+--ion-item-background:rgba(44,205,166, 0.5) !important;
+padding: 15px;
+font-weight: bold;
+}
+
+h1{
+text-align: center;
+}
+
+.title-color {
+color: rgba(44,205,166, 0.75) !important;
+}
