@@ -44,7 +44,7 @@ export class LoginPage implements OnInit{
 
     if(user)
     {
-      this.router.navigateByUrl('/activity', {replaceUrl: true});
+      this.router.navigateByUrl('/Eventifity/Activity', {replaceUrl: true});
     } else {
       this.showAlert('Registrierung fehlgeschlagen', 'Bitte erneut versuchen');
     }
@@ -68,7 +68,8 @@ export class LoginPage implements OnInit{
 
     if(user)
     {
-      this.router.navigateByUrl('/tabs', {replaceUrl: true});
+      this.showAlert('Do sama schau', user);
+      this.router.navigateByUrl('/Eventifity/Activity', {replaceUrl: true});
     } else {
       this.showAlert('Login fehlgeschlagen', 'Bitte erneut versuchen');
     }

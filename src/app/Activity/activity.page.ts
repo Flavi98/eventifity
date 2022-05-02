@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 
 interface Activities {
@@ -13,18 +15,25 @@ interface Activities {
 })
 
 export class ActivityPage {
+  profile = null;
   public activities: Activities[] = [];
   public testActivities: Array<{title: string, adress: string, date: string}> = [
     {title: 'Fußball', adress: 'Linz, 4020', date: '01.05.2022 14:00'},
     {title: 'Tennis', adress: 'Gmunden, 4810', date: '04.05.2022 08:00'},
     {title: 'Wandern', adress: 'Traun, 4050', date: '07.05.2022 11:00'},
-    {title: 'Rappen mit Nehat', adress: 'Ried im Innkreis, 4910', date: '08.05.2022 16:00'}
+    {title: 'Klettern mit Nehat', adress: 'Ried im Innkreis, 4910', date: '08.05.2022 16:00'}
   ]
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   // this.activities = this.testActivities;
   
-  
+  async logout(){
+    await this.authService.logout();
+    this.router.navigateByUrl('/', {replaceUrl: true});
+  }
 
 }

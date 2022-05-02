@@ -8,7 +8,7 @@ import{
 } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['Activity']);
+const redirectLoggedInToHome = () => redirectLoggedInTo(['activity']);
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
     ...canActivate(redirectLoggedInToHome)
   },
   {
-    path: 'Activity',
+    path: 'activity',
     loadChildren: () => import('./Activity/activity.module').then(m => m.ActivityPageModule),
     ...canActivate(redirectLoggedInToHome)
   },
