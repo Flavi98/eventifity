@@ -1,0 +1,24 @@
+<ion-content>
+    <h1>EVENTI<span class="title-color">VITY</span></h1>
+    <h3>My activites</h3>
+    <cdk-virtual-scroll-viewport itemSize="56">
+      <ion-list>
+        <ion-item *cdkVirtualFor="let activity of testActivities" class="item-style">
+          <ion-label> {{ activity.title }} </ion-label>
+          <ion-label> {{ activity.adress }} </ion-label>
+          <ion-label> {{ activity.date }} </ion-label>
+        </ion-item>
+      </ion-list>
+    </cdk-virtual-scroll-viewport>
+    <h3>All activites</h3>
+    <cdk-virtual-scroll-viewport itemSize="56">
+      <ion-list>
+        <ion-item *cdkVirtualFor="let activity of testActivities" class="item-style">
+          <ion-label> {{ activity.title }} </ion-label>
+          <ion-label> {{ activity.adress }} </ion-label>
+          <ion-label> {{ activity.date }} </ion-label>
+        </ion-item>
+      </ion-list>
+    </cdk-virtual-scroll-viewport>
+    
+</ion-content>

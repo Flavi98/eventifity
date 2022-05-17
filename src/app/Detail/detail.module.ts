@@ -1,26 +1,22 @@
-import { IonicModule } from '@ionic/angular'; 
+import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivityPage } from './activity.page';
+import { DetailPage } from './detail.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { ActivityPageRoutingModule } from './activity-routing.module';
+import { DetailPageRoutingModule } from './detail-routing.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAGmpY9gjTWZT2MfAHvG_EZrTF59rjwbu8'
-    }),
     FormsModule,
     ExploreContainerComponentModule,
-    ActivityPageRoutingModule,
+    DetailPageRoutingModule,
     ScrollingModule
   ],
-  declarations: [ActivityPage]
+  declarations: [DetailPage]
 })
-export class ActivityPageModule {}
+export class DetailPageModule {}
