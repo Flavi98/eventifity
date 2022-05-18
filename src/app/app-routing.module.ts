@@ -18,12 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'activity',
-    loadChildren: () => import('./Activity/activity.module').then(m => m.ActivityPageModule),
-    ...canActivate(redirectLoggedInToHome)
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    loadChildren: () => import('./activity/activity.module').then(m => m.ActivityPageModule),
     ...canActivate(redirectUnauthorizedToLogin)
   },
   {

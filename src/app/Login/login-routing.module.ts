@@ -6,7 +6,19 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage,
-  }
+  },
+  {
+    path: '/Login',
+    component: LoginPage,
+  },
+  {
+    path: '/login',
+    component: LoginPage,
+  },
+  {
+    path: '/Eventifity/Login',
+    component: LoginPage,
+  },
 ];
 
 @NgModule({

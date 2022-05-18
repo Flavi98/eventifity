@@ -6,7 +6,19 @@ const routes: Routes = [
   {
     path: '',
     component: ActivityPage,
-  }
+  },
+  {
+    path: '/Eventifity/Activity',
+    component: ActivityPage,
+  },
+  {
+    path: '/activity',
+    component: ActivityPage,
+  },
+  {
+    path: '/Activity',
+    component: ActivityPage,
+  },
 ];
 
 @NgModule({

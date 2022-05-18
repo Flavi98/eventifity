@@ -33,7 +33,19 @@ export class ActivityPage {
   
   async logout(){
     await this.authService.logout();
-    this.router.navigateByUrl('/', {replaceUrl: true});
+    this.router.navigateByUrl('/login', {replaceUrl: true});
+ 
   }
+  /* params holen Option 1
+  https://forum.ionicframework.com/t/how-to-pass-data-from-1-page-to-another-using-navigation-in-ionic-4/151060/2
+// Receive Parameter
+import { ActivatedRoute } from "@angular/router";
+//...
+constructor(private route: ActivatedRoute) {}
+//...
+this.route.queryParams.subscribe(params => {
+    this.cre = params["cre"]; --> is Mailadresse vom user
+});*/
+
 
 }
