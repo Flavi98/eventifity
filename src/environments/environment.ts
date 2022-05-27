@@ -11,7 +11,6 @@ export const environment = {
     apiKey: 'AIzaSyBLPKeOibeY09688Bq1klMPS3-L-3LLSbo',
     authDomain: 'eventivity-c9e51.firebaseapp.com',
     messagingSenderId: '797808821467',
-    measurementId: 'G-ENPQ5C02WF',
   },
   production: false
 };
