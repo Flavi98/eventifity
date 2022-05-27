@@ -1,5 +1,6 @@
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular'; 
 import { NgModule } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivityPage } from './activity.page';
@@ -12,6 +13,9 @@ import { ActivityPageRoutingModule } from './activity-routing.module';
   imports: [
     IonicModule,
     CommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAGmpY9gjTWZT2MfAHvG_EZrTF59rjwbu8'
+    }),
     FormsModule,
     ExploreContainerComponentModule,
     ActivityPageRoutingModule,

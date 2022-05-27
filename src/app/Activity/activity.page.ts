@@ -1,6 +1,5 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
+import { IonRouterOutlet, ActionSheetController } from '@ionic/angular';
 
 interface Activities {
   title: string;
@@ -15,37 +14,28 @@ interface Activities {
 })
 
 export class ActivityPage {
-  profile = null;
   public activities: Activities[] = [];
   public testActivities: Array<{title: string, adress: string, date: string}> = [
     {title: 'Fußball', adress: 'Linz, 4020', date: '01.05.2022 14:00'},
     {title: 'Tennis', adress: 'Gmunden, 4810', date: '04.05.2022 08:00'},
     {title: 'Wandern', adress: 'Traun, 4050', date: '07.05.2022 11:00'},
-    {title: 'Klettern mit Nehat', adress: 'Ried im Innkreis, 4910', date: '08.05.2022 16:00'}
+    {title: 'Rappen mit Nehat', adress: 'Ried im Innkreis, 4910', date: '08.05.2022 16:00'}
   ]
+  public lat = 51.678418;
+  public lng = 7.809007;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  public modalStatus = false;
+
+  constructor() {}
 
   // this.activities = this.testActivities;
   
-  async logout(){
-    await this.authService.logout();
-    this.router.navigateByUrl('/login', {replaceUrl: true});
- 
+  public openModal() {
+    this.modalStatus = true;
   }
-  /* params holen Option 1
-  https://forum.ionicframework.com/t/how-to-pass-data-from-1-page-to-another-using-navigation-in-ionic-4/151060/2
-// Receive Parameter
-import { ActivatedRoute } from "@angular/router";
-//...
-constructor(private route: ActivatedRoute) {}
-//...
-this.route.queryParams.subscribe(params => {
-    this.cre = params["cre"]; --> is Mailadresse vom user
-});*/
 
+  public closeModal() {
+    this.modalStatus = false;
+  }
 
 }
