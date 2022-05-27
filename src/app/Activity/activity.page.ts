@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { Firestore, collectionData } from '@angular/fire/firestore';
 import { IonRouterOutlet, ActionSheetController } from '@ionic/angular';
+import { collection } from 'firebase/firestore';
+import { DataService } from '../services/data.service'
 
 interface Activities {
   title: string;
@@ -15,6 +18,7 @@ interface Activities {
 
 export class ActivityPage {
   public activities: Activities[] = [];
+  
   public testActivities: Array<{title: string, adress: string, date: string}> = [
     {title: 'Fußball', adress: 'Linz, 4020', date: '01.05.2022 14:00'},
     {title: 'Tennis', adress: 'Gmunden, 4810', date: '04.05.2022 08:00'},
@@ -26,9 +30,12 @@ export class ActivityPage {
 
   public modalStatus = false;
 
-  constructor() {}
-
-  // this.activities = this.testActivities;
+  constructor(private dataService: DataService) {
+    this.dataService.getActivities().subscribe( res => {
+      console.log(res);
+      this.activities = res;
+    })
+  }
   
   public openModal() {
     this.modalStatus = true;
