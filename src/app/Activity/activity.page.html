@@ -33,14 +33,14 @@
           Close
         </ion-button>
         <ion-button color="dark" (click)="addActivityToYours()">
-          Add
+          Participate
         </ion-button>
         <h1>EVENTI<span class="title-color">VITY</span></h1>
         <h3>{{titleActivity}}</h3>
-        <p>Kategorie: {{categoryActivity}}</p>
-        <p>Ort: {{adressActivity}}</p>
-        <p>Datum: {{dateActivity}}</p>
-        <p>Beschreibung: {{descriptionActivity}}</p>
+        <p>Category: {{categoryActivity}}</p>
+        <p>Place: {{adressActivity}}</p>
+        <p>Date: {{dateActivity}}</p>
+        <p>Description: {{descriptionActivity}}</p>
           <agm-map [latitude]=latActivity [longitude]=lngActivity>
           <agm-marker [latitude]=latActivity [longitude]=lngActivity></agm-marker>
         </agm-map>
