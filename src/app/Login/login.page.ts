@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule,  FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,  FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router} from '@angular/router';
 import { AlertController, LoadingController} from '@ionic/angular';
 import { NavController } from '@ionic/angular';

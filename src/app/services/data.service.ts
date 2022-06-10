@@ -5,13 +5,15 @@ import { collectionData } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
 export interface Activity{
-    id?: string;
-    title: string;
-    adress: string;
-    date: string;
-    lat: number;
-    lng: number;
-    participators: string[];
+    id: string,
+    title: string,
+    adress: string,
+    date: string,
+    category: string,
+    description: string,
+    lat: number,
+    lng: number,
+    participators: string[],
 }
 
 @Injectable({

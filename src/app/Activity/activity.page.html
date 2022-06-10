@@ -3,7 +3,7 @@
   <h3>My activites</h3>
   <cdk-virtual-scroll-viewport itemSize="56">
     <ion-list>
-      <ion-item *cdkVirtualFor="let activity of activities" class="item-style" (click)="openModal(activity.title)">
+      <ion-item *cdkVirtualFor="let activity of activitiesUser" class="item-style" (click)="openModal(activity.id)">
         <ion-label> {{ activity.title }} </ion-label>
         <ion-label> {{ activity.adress }} </ion-label>
         <ion-label> {{ activity.date }} </ion-label>
@@ -13,7 +13,7 @@
   <h3>All activites</h3>
   <cdk-virtual-scroll-viewport itemSize="56">
     <ion-list>
-      <ion-item *cdkVirtualFor="let activity of activities" class="item-style" (click)="openModal(activity.title)">
+      <ion-item *cdkVirtualFor="let activity of activities" class="item-style" (click)="openModal(activity.id)">
         <ion-label> {{ activity.title }} </ion-label>
         <ion-label> {{ activity.adress }} </ion-label>
         <ion-label> {{ activity.date }} </ion-label>
@@ -35,12 +35,12 @@
         </ion-button>
         <h1>EVENTI<span class="title-color">VITY</span></h1>
         <h3>{{titleActivity}}</h3>
-        <p>Kategorie: </p>
-        <p>Ort: </p>
-        <p>Zeit: {{timeActivity}}</p>
-        <p>Beschreibung: </p>
-          <agm-map [latitude]="" [longitude]="">
-          <agm-marker [latitude]="" [longitude]=""></agm-marker>
+        <p>Kategorie: {{categoryActivity}}</p>
+        <p>Ort: {{adressActivity}}</p>
+        <p>Zeit: {{dateActivity}}</p>
+        <p>Beschreibung: {{descriptionActivity}}</p>
+          <agm-map [latitude]=latActivity [longitude]=lngActivity>
+          <agm-marker [latitude]=latActivity [longitude]=lngActivity></agm-marker>
         </agm-map>
       </ion-content>
     </ng-template>

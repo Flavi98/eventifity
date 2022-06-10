@@ -1,14 +1,17 @@
+import { getAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
-import { Firestore, collectionData } from '@angular/fire/firestore';
-import { IonRouterOutlet, ActionSheetController } from '@ionic/angular';
-import { collection } from 'firebase/firestore';
 import { DataService } from '../services/data.service';
-import { first } from "rxjs/operators";
 
 interface Activities {
-  title: string;
-  adress: string;
-  date: string;
+  id: string,
+  title: string,
+  adress: string,
+  date: string,
+  category: string,
+  description: string,
+  lat: number,
+  lng: number,
+  participators: string[],
 }
 
 @Component({
@@ -19,43 +22,39 @@ interface Activities {
 
 export class ActivityPage {
   public activities: Activities[] = [];
-  
-  //public testActivities: Array<{title: string, adress: string, date: string}> = [
-    //{title: 'Fußball', adress: 'Linz, 4020', date: '01.05.2022 14:00'},
-    //{title: 'Tennis', adress: 'Gmunden, 4810', date: '04.05.2022 08:00'},
-    //{title: 'Wandern', adress: 'Traun, 4050', date: '07.05.2022 11:00'},
-    //{title: 'Rappen mit Nehat', adress: 'Ried im Innkreis, 4910', date: '08.05.2022 16:00'}
-  //]
-
-  //public lat = 51.678418;
-  //public lng = 7.809007;
-
+  public activitiesUser: Activities[] = [];
   public modalStatus = false;
+  private email: string;
 
-  constructor(private dataService: DataService) {
+  constructor(
+      private dataService: DataService,
+    ) {
+    this.email = getAuth().currentUser.email;
     this.dataService.getActivities().subscribe( res => {
-      console.log(res);
       this.activities = res;
+      this.activitiesUser = res.filter(activity => activity.participators.includes(this.email));
     })
   }
 
   public titleActivity = "";
   public categoryActivity = "";
-  public placeActivity = "";
-  public timeActivity = "";
+  public adressActivity = "";
+  public dateActivity = "";
   public descriptionActivity = "";
+  public latActivity = 0;
+  public lngActivity = 0;
 
   
-  public openModal(title: String) {
+  public openModal(id: String) {
     this.modalStatus = true;
-    this.dataService.getActivities().subscribe( res => {
-      res.filter(x => x.title == title);
-      res.map(item => {
-        this.titleActivity=item.title;
-        this.categoryActivity=item.category;
-      });
-      console.log(res);
-    })
+    const modalActivity = this.activities.find(activity => activity.id == id);
+    this.titleActivity = modalActivity.title;
+    this.categoryActivity = modalActivity.category;
+    this.adressActivity = modalActivity.adress;
+    this.dateActivity = modalActivity.date;
+    this.descriptionActivity = modalActivity.description;
+    this.latActivity = modalActivity.lat;
+    this.lngActivity = modalActivity.lng;
   }
 
   public closeModal() {
