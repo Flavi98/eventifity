@@ -1,47 +1,92 @@
 <ion-content>
   <h1>EVENTI<span class="title-color">VITY</span></h1>
   <h3>My activites</h3>
-  <cdk-virtual-scroll-viewport itemSize="56">
+  <div class="viewport">
     <ion-list>
-      <ion-item *cdkVirtualFor="let activity of activitiesUser" class="item-style" (click)="openModal(activity.id)">
+      <ion-item *ngFor="let activity of activitiesUser" class="item-style" (click)="openModal(activity.id)">
         <ion-label> {{ activity.title }} </ion-label>
         <ion-label> {{ activity.adress }} </ion-label>
         <ion-label> {{ activity.date }} </ion-label>
       </ion-item>
     </ion-list>
-  </cdk-virtual-scroll-viewport>
+  </div>
   <h3>All activites</h3>
-  <cdk-virtual-scroll-viewport itemSize="56">
+  <div class="viewport">
     <ion-list>
-      <ion-item *cdkVirtualFor="let activity of activities" class="item-style" (click)="openModal(activity.id)">
+      <ion-item *ngFor="let activity of activities" class="item-style" (click)="openModal(activity.id)">
         <ion-label> {{ activity.title }} </ion-label>
         <ion-label> {{ activity.adress }} </ion-label>
         <ion-label> {{ activity.date }} </ion-label>
       </ion-item>
     </ion-list>
-  </cdk-virtual-scroll-viewport>
+  </div>
   <div class="new-event-button-container">
-    <ion-button color="dark" class="new-event-button">
+    <ion-button color="dark" class="new-event-button" (click)="openNewEventModal()">
       Create new Event
     </ion-button>
   </div>
 
-  <!-- Default -->
   <ion-modal [isOpen]="modalStatus">
     <ng-template>
       <ion-content>
         <ion-button color="dark" (click)="closeModal()">
           Close
         </ion-button>
+        <ion-button color="dark" (click)="addActivityToYours()">
+          Add
+        </ion-button>
         <h1>EVENTI<span class="title-color">VITY</span></h1>
         <h3>{{titleActivity}}</h3>
         <p>Kategorie: {{categoryActivity}}</p>
         <p>Ort: {{adressActivity}}</p>
-        <p>Zeit: {{dateActivity}}</p>
+        <p>Datum: {{dateActivity}}</p>
         <p>Beschreibung: {{descriptionActivity}}</p>
           <agm-map [latitude]=latActivity [longitude]=lngActivity>
           <agm-marker [latitude]=latActivity [longitude]=lngActivity></agm-marker>
         </agm-map>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="newEventmodalStatus">
+    <ng-template>
+      <ion-content>
+        <ion-button color="dark" (click)="closeNewEventModal()">
+          Close
+        </ion-button>
+        <h1>EVENTI<span class="title-color">VITY</span></h1>
+        <h3>Create new Activity</h3>
+        <ion-item>
+          <ion-label color="dark" position="floating">Title</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventTitle"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Kategorie</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventCategory"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Ort</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventAdress"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Datum</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventDate"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Beschreibung</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventDescription"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Lat</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventLat"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="dark" position="floating">Lng</ion-label>
+          <ion-input type="text" [(ngModel)]="newEventLng"></ion-input>
+        </ion-item>
+        <ion-button color="dark" (click)="createNewActivity()">
+          Erstellen
+        </ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>

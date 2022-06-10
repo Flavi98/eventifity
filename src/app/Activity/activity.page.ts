@@ -1,9 +1,10 @@
+import { Activity } from './../services/data.service';
 import { getAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
 
-interface Activities {
-  id: string,
+interface Activity_ {
+  id?: string,
   title: string,
   adress: string,
   date: string,
@@ -21,10 +22,20 @@ interface Activities {
 })
 
 export class ActivityPage {
-  public activities: Activities[] = [];
-  public activitiesUser: Activities[] = [];
+  public activities: Activity_[] = [];
+  public activitiesUser: Activity_[] = [];
   public modalStatus = false;
-  private email: string;
+  public newEventmodalStatus = false;
+  private email: string; 
+  public eventId: String;
+
+  public newEventTitle: string;
+  public newEventCategory: string;
+  public newEventAdress: string;
+  public newEventDate: string;
+  public newEventDescription: string;
+  public newEventLat: string;
+  public newEventLng: string;
 
   constructor(
       private dataService: DataService,
@@ -46,6 +57,7 @@ export class ActivityPage {
 
   
   public openModal(id: String) {
+    this.eventId = id;
     this.modalStatus = true;
     const modalActivity = this.activities.find(activity => activity.id == id);
     this.titleActivity = modalActivity.title;
@@ -57,7 +69,48 @@ export class ActivityPage {
     this.lngActivity = modalActivity.lng;
   }
 
+  public openNewEventModal() {
+    this.newEventmodalStatus = true;
+  }
+
   public closeModal() {
+    this.modalStatus = false;
+  }
+
+  public closeNewEventModal() {
+    this.newEventmodalStatus = false;
+  }
+
+  public createNewActivity() {
+    let newActivity: Activity = {
+      title: this.newEventTitle,
+      adress: this.newEventAdress,
+      date: this.newEventDate,
+      category: this.newEventCategory,
+      description: this.newEventDescription,
+      lat: Number(this.newEventLat),
+      lng: Number(this.newEventLng),
+      participators: []
+    };
+
+    this.dataService.addActivity(newActivity);
+
+    this.newEventmodalStatus = false;
+
+    window.location.reload();
+  }
+
+  public addActivityToYours() {
+    let modalActivity = this.activities.find(activity => activity.id == this.eventId);
+    let userArray: string[] = modalActivity.participators;
+    if(userArray.includes(this.email))
+    {
+      alert("This User is already in this activity");
+      this.modalStatus = false;
+      return;
+    }
+    userArray.push(this.email);
+    this.dataService.updateActivity(modalActivity, userArray);
     this.modalStatus = false;
   }
 

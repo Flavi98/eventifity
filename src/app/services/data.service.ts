@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
 import { docData, Firestore } from "@angular/fire/firestore";
-import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { collectionData } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
 export interface Activity{
-    id: string,
-    title: string,
-    adress: string,
-    date: string,
-    category: string,
-    description: string,
-    lat: number,
-    lng: number,
-    participators: string[],
+    id?: string;
+    title: string;
+    adress: string;
+    date: string;
+    category: string;
+    description: string;
+    lat: number;
+    lng: number;
+    participators: string[];
 }
 
 @Injectable({
@@ -28,11 +28,6 @@ export class DataService{
         return collectionData(activitiesRef, {idField: 'id'}) as Observable<Activity[]>;
     }
 
-    getActivityById(id): Observable<Activity>{
-        const activDocRef = doc(this.firestore, 'activities/$(id)');
-        return docData(activDocRef, {idField: 'id'}) as Observable<Activity>;
-    }
-
     addActivity(activity: Activity){
         const activityRef = collection(this.firestore, 'activities');
         return addDoc(activityRef, activity);
@@ -41,5 +36,11 @@ export class DataService{
     deleteActivity(activity: Activity){
         const activDocRef = doc(this.firestore, 'activities/$(activity.id)');
         return deleteDoc(activDocRef);
+    }
+
+    updateActivity(activity: Activity, users: string[]){
+        const activDocRef = doc(this.firestore, 'activities/'+activity.id);
+        console.log(activDocRef, activity)
+        return updateDoc(activDocRef, { participators : users});
     }
 }
