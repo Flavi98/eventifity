@@ -2,6 +2,8 @@ import { Activity } from './../services/data.service';
 import { getAuth } from '@angular/fire/auth';
 import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { AuthService } from './../services/auth.service';
+import { Router} from '@angular/router';
 
 interface Activity_ {
   id?: string,
@@ -38,6 +40,8 @@ export class ActivityPage {
   public newEventLng: string;
 
   constructor(
+     private authService: AuthService,
+     private router: Router,
       private dataService: DataService,
     ) {
     this.email = getAuth().currentUser.email;
@@ -112,6 +116,12 @@ export class ActivityPage {
     userArray.push(this.email);
     this.dataService.updateActivity(modalActivity, userArray);
     this.modalStatus = false;
+  }
+
+  async logout() {
+    await this.authService.logout();
+    this.router.navigateByUrl('/');
+    console.log("async in activity page");
   }
 
 }

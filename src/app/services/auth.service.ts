@@ -34,5 +34,8 @@ export class AuthService {
     return null;
   }
 }
-  logout(){ return signOut(this.auth)}
+  async logout(){ 
+    console.log("Logout auth methode");
+    return signOut(this.auth)
+  }
 }
