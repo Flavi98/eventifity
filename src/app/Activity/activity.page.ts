@@ -58,6 +58,7 @@ export class ActivityPage {
   public descriptionActivity = "";
   public latActivity = 0;
   public lngActivity = 0;
+  public participatorsActivity = [];
 
   
   public openModal(id: String) {
@@ -71,6 +72,7 @@ export class ActivityPage {
     this.descriptionActivity = modalActivity.description;
     this.latActivity = modalActivity.lat;
     this.lngActivity = modalActivity.lng;
+    this.participatorsActivity = modalActivity.participators;
   }
 
   public openNewEventModal() {
