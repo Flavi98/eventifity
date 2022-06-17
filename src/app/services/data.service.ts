@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { docData, Firestore } from "@angular/fire/firestore";
-import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, Timestamp, updateDoc } from "firebase/firestore";
 import { collectionData } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
 
@@ -34,7 +34,7 @@ export class DataService{
     }
 
     deleteActivity(activity: Activity){
-        const activDocRef = doc(this.firestore, 'activities/$(activity.id)');
+        const activDocRef = doc(this.firestore, 'activities/'+activity.id);
         return deleteDoc(activDocRef);
     }
 

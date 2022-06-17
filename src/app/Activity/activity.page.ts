@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from './../services/auth.service';
 import { Router} from '@angular/router';
+import { Timestamp } from 'firebase/firestore';
 
 interface Activity_ {
   id?: string,
@@ -48,17 +49,31 @@ export class ActivityPage {
     this.dataService.getActivities().subscribe( res => {
       this.activities = res;
       this.activitiesUser = res.filter(activity => activity.participators.includes(this.email));
+      this.checkDate();
     })
   }
 
   public titleActivity = "";
   public categoryActivity = "";
   public adressActivity = "";
-  public dateActivity = "";
+  public dateActivity;
   public descriptionActivity = "";
   public latActivity = 0;
   public lngActivity = 0;
   public participatorsActivity = [];
+
+  public checkDate()
+  {
+    this.activities.forEach(activity => {
+      let check = new Date(activity.date.split('.')[2]+"-"+activity.date.split('.')[1]+"-"+activity.date.split('.')[0]); 
+      let localDate = new Date();
+      localDate.setDate(localDate.getDate() + 1);
+      if(check < localDate)
+      {
+        this.dataService.deleteActivity(activity);
+      }
+    });
+  }
 
   
   public openModal(id: String) {

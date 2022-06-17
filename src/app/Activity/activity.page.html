@@ -71,19 +71,19 @@
           <ion-input type="text" [(ngModel)]="newEventTitle"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="dark" position="floating">Kategorie</ion-label>
+          <ion-label color="dark" position="floating">Category</ion-label>
           <ion-input type="text" [(ngModel)]="newEventCategory"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="dark" position="floating">Ort</ion-label>
+          <ion-label color="dark" position="floating">Place</ion-label>
           <ion-input type="text" [(ngModel)]="newEventAdress"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="dark" position="floating">Datum</ion-label>
+          <ion-label color="dark" position="floating">Date (dd.mm.yyyy)</ion-label>
           <ion-input type="text" [(ngModel)]="newEventDate"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="dark" position="floating">Beschreibung</ion-label>
+          <ion-label color="dark" position="floating">Description</ion-label>
           <ion-input type="text" [(ngModel)]="newEventDescription"></ion-input>
         </ion-item>
         <ion-item>
@@ -100,21 +100,4 @@
       </ion-content>
     </ng-template>
   </ion-modal>
-
-  <script>
-    // Get the modal
-    var modal1 = document.getElementById('modal1');
-    var modal2 = document.getElementById('modal2')
-    
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) 
-    {
-      closeNewEventModal();
-      closeModal();
-      newEventmodalStatus = false;
-      modalStatus = false;
-      console.log("Close");
-    }
-    </script>
-  
 </ion-content>
