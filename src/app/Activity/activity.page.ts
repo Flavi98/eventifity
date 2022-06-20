@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { AuthService } from './../services/auth.service';
 import { Router} from '@angular/router';
-import { Timestamp } from 'firebase/firestore';
 
 interface Activity_ {
   id?: string,
@@ -36,6 +35,7 @@ export class ActivityPage {
   public newEventCategory: string;
   public newEventAdress: string;
   public newEventDate: string;
+  public newEventTime: string;
   public newEventDescription: string;
   public newEventLat: string;
   public newEventLng: string;
@@ -66,7 +66,8 @@ export class ActivityPage {
   public checkDate()
   {
     this.activities.forEach(activity => {
-      let check = new Date(activity.date.split('.')[2]+"-"+activity.date.split('.')[1]+"-"+activity.date.split('.')[0]); 
+      let s = activity.date.split(' ');
+      let check = new Date(s[0].split('.')[2]+"-"+s[0].split('.')[1]+"-"+s[0].split('.')[0]); 
       console.log(check, 'Activity Date')
       let localDate = new Date();
       console.log(localDate, 'Date Now')
@@ -109,7 +110,7 @@ export class ActivityPage {
     let newActivity: Activity = {
       title: this.newEventTitle,
       adress: this.newEventAdress,
-      date: this.newEventDate,
+      date: this.newEventDate+" "+this.newEventTime,
       category: this.newEventCategory,
       description: this.newEventDescription,
       lat: Number(this.newEventLat),
