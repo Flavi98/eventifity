@@ -1,5 +1,7 @@
 <ion-content>
-  <h1>EVENTI<span class="title-color">VITY</span></h1>
+  <div class="logo">
+    <img src="https://i.imgur.com/XzeKNVT.png" />
+  </div>
   <h2>
     <ion-button (click)="logout()">
       <ion-icon slot="icon-only" name="log-out"></ion-icon>
@@ -95,7 +97,7 @@
           <ion-input type="text" [(ngModel)]="newEventLng"></ion-input>
         </ion-item>
         <ion-button color="dark" (click)="createNewActivity()">
-          Erstellen
+          Create
         </ion-button>
       </ion-content>
     </ng-template>

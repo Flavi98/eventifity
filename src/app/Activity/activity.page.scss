@@ -26,8 +26,12 @@ font-weight: bold;
 cursor: pointer;
 }
 
-h1{
-text-align: center;
+.logo img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 130px;
+  height: auto;
 }
 
 .title-color {
