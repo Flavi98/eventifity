@@ -11,19 +11,21 @@
     </ion-toolbar>
   </ion-header>
 
+  <div class="formBox">
 <form [formGroup]="credentials" (ngSubmit)="login()">
 
-  <ion-item fill="solid" class="ion-margin-bottom">
+  <ion-item fill="solid" class="emailField" >
     <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
     <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email ist ungültig</ion-note>
   </ion-item>
 
-  <ion-item fill="solid" class="ion-margin-bottom">
+  <ion-item fill="solid" class="passwordField">
     <ion-input type="password" placeholder="Passwort" formControlName="password"></ion-input>
     <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Passwort ist ungültig</ion-note>
   </ion-item>
 
-  <ion-button expand="full" type="submit" [disabled]="!credentials.valid">Login</ion-button>
-  <ion-button expand="full" type="button" (click)="register()">Account erstellen</ion-button>
+  <ion-button expand="full" type="submit" class="loginButton" [disabled]="!credentials.valid">Login</ion-button>
+  <ion-button expand="full" type="button" class="registerButton" (click)="register()">Account erstellen</ion-button>
 </form>
+</div>
 </ion-content>
