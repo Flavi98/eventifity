@@ -51,6 +51,7 @@ export class ActivityPage {
       this.activitiesUser = res.filter(activity => activity.participators.includes(this.email));
       this.checkDate();
     })
+    
   }
 
   public titleActivity = "";
@@ -66,8 +67,10 @@ export class ActivityPage {
   {
     this.activities.forEach(activity => {
       let check = new Date(activity.date.split('.')[2]+"-"+activity.date.split('.')[1]+"-"+activity.date.split('.')[0]); 
+      console.log(check, 'Activity Date')
       let localDate = new Date();
-      localDate.setDate(localDate.getDate() + 1);
+      console.log(localDate, 'Date Now')
+      localDate.setDate(localDate.getDate());
       if(check < localDate)
       {
         this.dataService.deleteActivity(activity);
@@ -116,9 +119,15 @@ export class ActivityPage {
 
     this.dataService.addActivity(newActivity);
 
-    this.newEventmodalStatus = false;
+    this.newEventTitle = "";
+    this.newEventAdress = "";
+    this.newEventDate = "";
+    this.newEventCategory = "";
+    this.newEventDescription = "";
+    this.newEventLat = "";
+    this.newEventLng = "";
 
-    window.location.reload();
+    this.newEventmodalStatus = false;
   }
 
   public addActivityToYours() {
