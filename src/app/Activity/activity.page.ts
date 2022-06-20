@@ -70,7 +70,7 @@ export class ActivityPage {
       console.log(check, 'Activity Date')
       let localDate = new Date();
       console.log(localDate, 'Date Now')
-      localDate.setDate(localDate.getDate());
+      localDate.setDate(localDate.getDate() - 1);
       if(check < localDate)
       {
         this.dataService.deleteActivity(activity);
